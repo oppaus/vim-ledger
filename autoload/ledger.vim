@@ -114,6 +114,14 @@ function! ledger#transactions(...)
   return transactions
 endf
 
+function! ledger#entry()
+  let line = getline(".")
+  d
+  let entr = system("ledger -f " . @% . " entry " . line)
+  call append(".", split(entr, "\n"))
+  normal j
+endf    
+
 " == transaction object implementation ==
 
 let s:transaction = {} "{{{1
